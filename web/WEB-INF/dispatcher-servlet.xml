@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--注册组件扫描器-->
+    <mvc:annotation-driven/>
+    <!--<context:annotation-config />-->
+    <mvc:default-servlet-handler/>
+
+    <context:component-scan base-package="com.pd.smvc.controller"></context:component-scan>
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+    <!--  <mvc:default-servlet-handler></mvc:default-servlet-handler>-->
+    <mvc:resources mapping="/images/**" location="/images/"></mvc:resources>
+    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
+
+    <!--   <bean id="/test/my.do" class="com.pd.smvc.controller.MyController">
+       </bean>
+
+       <bean id="/my.do2" class="com.pd.smvc.controller.MyController2">
+           <property name="supportedMethods" value="POST,GET"></property>
+       </bean>
+
+       <bean id="/myControllerRediretView" class="com.pd.smvc.controller.MyControllerRediretView">
+       </bean>
+
+       <bean id="myControllerMultiAction" class="com.pd.smvc.controller.MyControllerMultiAction">
+           <property name="supportedMethods" value="POST,GET"></property>
+       </bean>
+       <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+           <property name="urlMap">
+               <map>
+                   <entry key="/my/*.do" value-ref="myControllerMultiAction"></entry>
+               </map>
+           </property>
+       </bean>
+   -->
+
+    <!--
+       <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+            <property name="location" value="WEB-INF/myview.xml"></property>
+        </bean>
+    -->
+    <!--自定义异常处理器-->
+    <!-- <bean class="com.pd.smvc.MyHandlerExecption">
+     </bean>-->
+
+    <!--注册验证器 -->
+    <!--<bean id="myValidator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
+    </bean>-->
+
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    </bean>
+
+   <!-- <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"></mvc:mapping>
+            <bean id="interceptOne" class="com.pd.smvc.InterceptOne"></bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"></mvc:mapping>
+            <bean id="interceptTwo" class="com.pd.smvc.InterceptTwo"></bean>
+
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+</beans>
